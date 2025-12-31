@@ -1,9 +1,9 @@
 import {Module, Global} from '@nestjs/common';
-import {ShortcutService} from './shortcut.service';
+import {ShortcutGroupController} from './shortcut-group.controller';
+import {ShortcutItemController} from './shortcut-item.controller';
 
 @Global()
 @Module({
-  providers: [ShortcutService],
-  exports: [ShortcutService],
+  controllers: [ShortcutGroupController, ShortcutItemController],
 })
 export class ShortcutModule {}

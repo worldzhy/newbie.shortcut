@@ -1,9 +1,9 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {Type} from 'class-transformer';
-import {IsString, IsNumber, IsOptional, IsEnum, isEnum} from 'class-validator';
+import {IsString, IsNumber, IsOptional, IsEnum} from 'class-validator';
 import {CommonListRequestDto, CommonListResponseDto} from '@framework/common.dto';
 import {ShortcutGroupEntity, ShortcutItemEntity} from './shortcut.entity';
-import {ShortcutItemType} from '@prisma/client';
+import {ShortcutItemType} from '@generated/prisma/client';
 
 export class ShortcutReqBaseDto {
   channelName: string;

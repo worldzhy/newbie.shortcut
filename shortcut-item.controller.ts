@@ -1,6 +1,6 @@
 import {Controller, Post, Body, Get, Query, Patch, Delete, Param} from '@nestjs/common';
 import {ApiTags, ApiBearerAuth, ApiResponse} from '@nestjs/swagger';
-import {Prisma} from '@prisma/client';
+import {Prisma} from '@generated/prisma/client';
 import {PrismaService} from '@framework/prisma/prisma.service';
 import {CommonGetByNumberIdRequestDto} from '@framework/common.dto';
 import {

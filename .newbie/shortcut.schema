@@ -6,13 +6,14 @@
 // * ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄ ⌄  //
 
 model ShortcutGroup {
-  id        Int            @id @default(autoincrement())
-  name      String
-  sort      Int            @default(0)
-  parentId  Int            @default(0)
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  items     ShortcutItem[]
+  id          Int            @id @default(autoincrement())
+  name        String
+  description String?
+  sort        Int            @default(0)
+  parentId    Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  items       ShortcutItem[]
 
   @@schema("microservice/shortcut")
 }

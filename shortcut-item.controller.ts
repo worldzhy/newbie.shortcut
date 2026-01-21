@@ -9,6 +9,7 @@ import {
   CreateShortcutItemRequestDto,
   UpdateShortcutItemRequestDto,
   ShortcutTreeResDto,
+  ShortcutTreeRequestDto,
 } from './shortcut-item.dto';
 import {ShortcutItemEntity} from './shortcut.entity';
 
@@ -20,7 +21,7 @@ export class ShortcutItemController {
 
   @Get('tree')
   @ApiResponse({type: ShortcutTreeResDto, isArray: true})
-  async tree() {
+  async tree(@Query() query: ShortcutTreeRequestDto) {
     const groups = await this.prisma.shortcutGroup.findMany({
       orderBy: {sort: 'desc'},
     });
@@ -47,7 +48,14 @@ export class ShortcutItemController {
 
     return Object.keys(groupMap)
       .map(groupId => groupMap[groupId])
-      .filter(group => group.parentId === 0);
+      .filter(group => group.parentId === 0)
+      .filter(group => {
+        if (query.groupId) {
+          return group.id === query.groupId;
+        }else {
+          return true;
+        }
+      });
   }
 
   @Get()
@@ -70,12 +78,12 @@ export class ShortcutItemController {
   @Patch(':id')
   @ApiResponse({type: ShortcutItemEntity})
   async update(@Param() params: CommonGetByNumberIdRequestDto, @Body() body: UpdateShortcutItemRequestDto) {
-    return await this.prisma.shortcutItem.update({where: {id: params.id}, data: body});
+    return await this.prisma.shortcutItem.update({where: {id: Number(params.id)}, data: body});
   }
 
   @Delete(':id')
   @ApiResponse({type: ShortcutItemEntity})
   async delete(@Param() params: CommonGetByNumberIdRequestDto) {
-    return await this.prisma.shortcutItem.delete({where: {id: params.id}});
+    return await this.prisma.shortcutItem.delete({where: {id: Number(params.id)}});
   }
 }

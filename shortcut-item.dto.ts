@@ -9,9 +9,17 @@ export class ShortcutReqBaseDto {
   channelName: string;
 }
 
+export class ShortcutTreeRequestDto {
+  @ApiProperty({type: Number, required: false})
+  @Type(() => Number)
+  @IsOptional()
+  groupId?: number;
+}
+
+
 export class ShortcutTreeResDto extends ShortcutGroupEntity {
-  @ApiProperty({type: ShortcutItemEntity, isArray: true})
-  child: ShortcutItemEntity[];
+  @ApiProperty({type: ShortcutTreeResDto, isArray: true})
+  child: ShortcutTreeResDto[];
 
   @ApiProperty({type: ShortcutItemEntity, isArray: true})
   items: ShortcutItemEntity[];

@@ -37,12 +37,12 @@ export class ShortcutGroupController {
   @Patch(':id')
   @ApiResponse({type: ShortcutGroupEntity})
   async update(@Param() params: CommonGetByNumberIdRequestDto, @Body() body: UpdateShortcutGroupRequestDto) {
-    return await this.prisma.shortcutGroup.update({where: {id: params.id}, data: body});
+    return await this.prisma.shortcutGroup.update({where: {id: Number(params.id)}, data: body});
   }
 
   @Delete(':id')
   @ApiResponse({type: ShortcutGroupEntity})
   async delete(@Param() params: CommonGetByNumberIdRequestDto) {
-    return await this.prisma.shortcutGroup.delete({where: {id: params.id}});
+    return await this.prisma.shortcutGroup.delete({where: {id: Number(params.id)}});
   }
 }

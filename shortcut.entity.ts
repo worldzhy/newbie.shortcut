@@ -7,6 +7,9 @@ export class ShortcutGroupEntity {
   @ApiProperty({type: String})
   name: string;
 
+  @ApiProperty({type: String})
+  description: string;
+
   @ApiProperty({type: Number})
   sort: number;
 

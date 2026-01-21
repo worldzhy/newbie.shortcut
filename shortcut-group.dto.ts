@@ -24,6 +24,11 @@ export class CreateShortcutGroupRequestDto {
   @ApiProperty({type: String})
   @IsString()
   name: string;
+  
+  @ApiProperty({type: String, required: false})
+  @IsString()
+  @IsOptional()
+  description?: string;
 
   @ApiProperty({type: Number, required: false})
   @IsNumber()
@@ -41,6 +46,11 @@ export class UpdateShortcutGroupRequestDto {
   @IsString()
   @IsOptional()
   name?: string;
+
+  @ApiProperty({type: String, required: false})
+  @IsString()
+  @IsOptional()
+  description?: string;
 
   @ApiProperty({type: Number, required: false})
   @IsNumber()
